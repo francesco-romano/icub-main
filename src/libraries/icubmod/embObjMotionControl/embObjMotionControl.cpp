@@ -219,7 +219,7 @@ embObjMotionControl::embObjMotionControl() :
     ImplementPositionControl2(this),
     ImplementVelocityControl<embObjMotionControl, IVelocityControl>(this),
     ImplementVelocityControl2(this),
-    ImplementControlMode(this),
+    ImplementControlMode2(this),
     ImplementImpedanceControl(this),
 #ifdef IMPLEMENT_DEBUG_INTERFACE
     ImplementDebugInterface(this),
@@ -410,7 +410,7 @@ bool embObjMotionControl::open(yarp::os::Searchable &config)
     ImplementEncodersTimed::initialize(_njoints, _axisMap, _angleToEncoder, _zeros);
     ImplementPositionControl2::initialize(_njoints, _axisMap, _angleToEncoder, _zeros);
     ImplementPidControl<embObjMotionControl, IPidControl>:: initialize(_njoints, _axisMap, _angleToEncoder, _zeros);
-    ImplementControlMode::initialize(_njoints, _axisMap);
+    ImplementControlMode2::initialize(_njoints, _axisMap);
     ImplementVelocityControl<embObjMotionControl, IVelocityControl>::initialize(_njoints, _axisMap, _angleToEncoder, _zeros);
     ImplementVelocityControl2::initialize(_njoints, _axisMap, _angleToEncoder, _zeros);
 #ifdef IMPLEMENT_DEBUG_INTERFACE
@@ -1237,7 +1237,7 @@ bool embObjMotionControl::configure_mais(void)
 
 bool embObjMotionControl::close()
 {
-    ImplementControlMode::uninitialize();
+    ImplementControlMode2::uninitialize();
     ImplementEncodersTimed::uninitialize();
     ImplementPositionControl2::uninitialize();
     ImplementVelocityControl<embObjMotionControl, IVelocityControl>::uninitialize();
@@ -1748,6 +1748,11 @@ bool embObjMotionControl::getAxes(int *ax)
     *ax=_njoints;
 
     return true;
+}
+
+bool embObjMotionControl::setPositionDirectModeRaw()
+{
+    return NOT_YET_IMPLEMENTED("setPositionDirectModeRaw");
 }
 
 bool embObjMotionControl::setPositionModeRaw()
@@ -2281,6 +2286,28 @@ bool embObjMotionControl::getControlModesRaw(int* v)
     }
     return ret;
 }
+
+bool embObjMotionControl::getControlModesRaw(const int n_joint, const int *joints, int *modes)
+{
+    return NOT_YET_IMPLEMENTED("getControlModesRaw");
+}
+
+bool embObjMotionControl::setControlModeRaw(const int j, const int mode)
+{
+    return NOT_YET_IMPLEMENTED("setControlModeRaw");
+}
+
+bool embObjMotionControl::setControlModesRaw(const int n_joint, const int *joints, int *modes)
+{
+    return NOT_YET_IMPLEMENTED("setControlModesRaw");
+}
+
+bool embObjMotionControl::setControlModesRaw(int *modes)
+{
+    return NOT_YET_IMPLEMENTED("setControlModesRaw");
+}
+
+
 
 //////////////////////// BEGIN EncoderInterface
 
